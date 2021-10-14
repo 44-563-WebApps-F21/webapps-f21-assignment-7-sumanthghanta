@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>setTimeout use</title>
+  <title>Reaction time</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -10,29 +10,44 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+  <h2 style="color:blueviolet">Reaction Timer by Sumanth raja Ghanta</h2>
+  <div id="target">Your time</div><br>
+  <div id="countdown">Count</div><br>
 
-  <h2>Timeout - Red in 3 seconds</h2>
-
-  <button type="button"
-  class="btn btn-primary"
-  onclick="buttonPress2()">
-  Click me change the color.</button>
-  
-  <p id="target">I will become red </p>
+  <button type="button" class="btn btn-primary" onclick="startTime()" >Start Timer</button>
+  <button type="button" class="btn btn-success" onclick="recordReact()">React now</button>
   
   <script> 
-  function buttonPress1() {
-    setTimeout(function(){
-      document.getElementById('target').style.color = "red"
-    }, 3000)
+  myTime= undefined;
+  function recordReact() {
+      myTime=Date.now()
+      console.log("Time : " + myTime);
   }
 
-  function buttonPress2() {
-    setTimeout(()=>{
-      document.getElementById('target').style.color = "red"
-    }, 3000)
-  }
+ function startTime(){
+    
+        for (let i = 0; i <=3; i++) {
+        setTimeout(function (i) {
+        document.getElementById("countdown").innerHTML = i
+        }, (((3) - i) * 1000), i)
+        }
+ 
+ setTimeout(function (i) {
+            console.log(i)
+            if (myTime == undefined) {
+            document.getElementById("target").innerHTML = "Too Slow"
+            
+            }
+            else {
+            var buttonTime = Date.now();
+            var elapsedTime = buttonTime - myTime;
+            document.getElementById("target").innerHTML = "Time was : " + elapsedTime;
+           
+            }
+        }, (3 - 1)*1000)
+    }  
+    
   </script>
-
+</div>
 </body>
 </html>
